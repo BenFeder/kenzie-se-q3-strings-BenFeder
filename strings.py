@@ -62,8 +62,10 @@ def both_ends(s):
 
 
 def fix_start(s):
-    # your code here
-    return
+    if len(s) == 1:
+        return s
+    elif len(s) > 1:
+        return s[0] + s[1:].replace(s[0], "*")
 
 
 # D. mix_up
