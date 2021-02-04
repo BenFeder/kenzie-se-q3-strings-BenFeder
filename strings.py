@@ -112,8 +112,13 @@ def verbing(s):
 
 
 def not_bad(s):
-    # your code here
-    return
+    bad_spot = s.find("bad")
+    not_spot = s.find("not")
+    if not_spot != -1 and bad_spot > not_spot:
+        new_string = s[:not_spot] + "good" + s[bad_spot+3:]
+        return new_string
+    else:
+        return s
 
 
 # G. front_back
@@ -127,5 +132,26 @@ def not_bad(s):
 
 
 def front_back(a, b):
-    # your code here
-    return
+    a_length = len(a)
+    b_length = len(b)
+    if a_length % 2 == 0 and b_length % 2 == 0:
+        a_front = a[:a_length//2]
+        a_back = a[a_length//2:]
+        b_front = b[:b_length//2]
+        b_back = b[b_length//2:]
+    elif a_length % 2 == 0 and b_length % 2 == 1:
+        a_front = a[:a_length//2]
+        a_back = a[a_length//2:]
+        b_front = b[:(b_length//2)+1]
+        b_back = b[(b_length//2)+1:]
+    elif a_length % 2 == 1 and b_length % 2 == 0:
+        a_front = a[:(a_length//2)+1]
+        a_back = a[(a_length//2)+1:]
+        b_front = b[:b_length//2]
+        b_back = b[b_length//2:]
+    elif a_length % 2 == 1 and b_length % 2 == 1:
+        a_front = a[:(a_length//2)+1]
+        a_back = a[(a_length//2)+1:]
+        b_front = b[:(b_length//2)+1]
+        b_back = b[(b_length//2)+1:]
+    return a_front + b_front + a_back + b_back
