@@ -15,7 +15,7 @@ Kenzie assignment: Strings!
 
 # Your name, plus anyone who helped you with this assignment.
 # Give credit where credit is due.
-__author__ = "???"
+__author__ = "Benjamin Feder"
 
 # A. donuts
 # Given an int count of a number of donuts, return a string
@@ -28,8 +28,10 @@ __author__ = "???"
 
 
 def donuts(count):
-    # your code here
-    return
+    if count < 10:
+        return 'Number of donuts: ' + str(count)
+    else:
+        return 'Number of donuts: many'
 
 
 # B. both_ends
@@ -42,8 +44,10 @@ def donuts(count):
 
 
 def both_ends(s):
-    # your code here
-    return
+    if len(s) < 2:
+        return ''
+    else:
+        return s[:2] + s[-2:]
 
 
 # C. fix_start
@@ -58,8 +62,10 @@ def both_ends(s):
 
 
 def fix_start(s):
-    # your code here
-    return
+    if len(s) == 1:
+        return s
+    elif len(s) > 1:
+        return s[0] + s[1:].replace(s[0], "*")
 
 
 # D. mix_up
@@ -73,8 +79,9 @@ def fix_start(s):
 
 
 def mix_up(a, b):
-    # your code here
-    return
+    new_a = b[:2] + a[2:]
+    new_b = a[:2] + b[2:]
+    return new_a + " " + new_b
 
 
 # E. verbing
@@ -86,8 +93,13 @@ def mix_up(a, b):
 
 
 def verbing(s):
-    # your code here
-    return
+    if len(s) >= 3:
+        if s[-3:] == "ing":
+            return s + "ly"
+        else:
+            return s + "ing"
+    else:
+        return s
 
 
 # F. not_bad
@@ -100,8 +112,13 @@ def verbing(s):
 
 
 def not_bad(s):
-    # your code here
-    return
+    bad_spot = s.find("bad")
+    not_spot = s.find("not")
+    if not_spot != -1 and bad_spot > not_spot:
+        new_string = s[:not_spot] + "good" + s[bad_spot+3:]
+        return new_string
+    else:
+        return s
 
 
 # G. front_back
@@ -115,5 +132,26 @@ def not_bad(s):
 
 
 def front_back(a, b):
-    # your code here
-    return
+    a_length = len(a)
+    b_length = len(b)
+    if a_length % 2 == 0 and b_length % 2 == 0:
+        a_front = a[:a_length//2]
+        a_back = a[a_length//2:]
+        b_front = b[:b_length//2]
+        b_back = b[b_length//2:]
+    elif a_length % 2 == 0 and b_length % 2 == 1:
+        a_front = a[:a_length//2]
+        a_back = a[a_length//2:]
+        b_front = b[:(b_length//2)+1]
+        b_back = b[(b_length//2)+1:]
+    elif a_length % 2 == 1 and b_length % 2 == 0:
+        a_front = a[:(a_length//2)+1]
+        a_back = a[(a_length//2)+1:]
+        b_front = b[:b_length//2]
+        b_back = b[b_length//2:]
+    elif a_length % 2 == 1 and b_length % 2 == 1:
+        a_front = a[:(a_length//2)+1]
+        a_back = a[(a_length//2)+1:]
+        b_front = b[:(b_length//2)+1]
+        b_back = b[(b_length//2)+1:]
+    return a_front + b_front + a_back + b_back
